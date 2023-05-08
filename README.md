@@ -1,7 +1,7 @@
 # Gvzz - A Twitter Clone
 Backend API for Gvzz using Nest framework (NodeJS + TypeSCript + PostgreeSQL)
 
-![NodeJS Workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=main)
+![NodeJS Workflow](https://github.com/scaleracademy/twitter-backend-node/actions/workflows/nodejs.yml/badge.svg)
 
 
 ## Installation
