@@ -1,16 +1,18 @@
 import { Controller, Get, Param, Patch, Put, Delete, Post } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
 
     @Get('/@:username')
-    getUserByUsername(@Param() param): string {
-        return `details of username = ${param.username}`;
+    getUserByUsername(@Param('username') username: string): string {
+        return `details of username = ${username}`;
     }
 
     @Get('/:userid')
-    getUserByUserId(@Param() param): string {
-        return `details of user id = ${param.userid}`;
+    getUserByUserId(@Param('userid') userid: string): string {
+        return `details of user id = ${userid}`;
     }
 
     @Post('/')
@@ -19,8 +21,8 @@ export class UsersController {
     }
 
     @Patch('/:userid')
-    updateUserDetails(@Param() param): string {
-        return `details of user (id = ${param.userid}) updated`;
+    updateUserDetails(@Param('userid') userid): string {
+        return `details of user (id = ${userid}) updated`;
     }
 
     @Put(':userid/follow')

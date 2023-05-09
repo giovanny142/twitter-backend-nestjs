@@ -1,5 +1,6 @@
 import { GvzBaseEntity } from 'src/commons/base.entity';
-import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
+import { UserEntity } from 'src/users/users.entity';
+import { Entity, Column, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 
 @Entity('posts')
 export class PostEntity extends GvzBaseEntity {
@@ -9,6 +10,10 @@ export class PostEntity extends GvzBaseEntity {
 
     @Column('json', { default: [] })
     images: Array<string>
+
+    @ManyToOne(() => UserEntity)
+    @JoinColumn({ name: 'author_id' })
+    author: UserEntity
 
     @Column({ name: 'like_count', default: 0 })
     likeCount: number
