@@ -10,6 +10,14 @@ Backend API for Gvzz using Nest framework (NodeJS + TypeSCript + PostgreeSQL)
 $ npm install
 ```
 
+## Setup Database
+
+```psql
+create database gvzdb;
+ create user gvzadmin with encrypted password 'gvzpass';
+ grant all privileges on database gvzdb to gvzadmin;
+```
+
 ## Running the app
 
 ```bash
