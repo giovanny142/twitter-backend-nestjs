@@ -1,5 +1,5 @@
-import { GvzBaseEntity } from 'src/commons/base.entity';
-import { UserEntity } from 'src/users/users.entity';
+import { GvzBaseEntity } from '../commons/base.entity';
+import { UserEntity } from '../users/users.entity';
 import { Entity, Column, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 
 @Entity('posts')

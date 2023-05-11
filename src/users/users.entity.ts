@@ -1,4 +1,4 @@
-import { GvzBaseEntity } from "src/commons/base.entity";
+import { GvzBaseEntity } from "../commons/base.entity";
 import { Column, Entity } from "typeorm";
 
 @Entity('users')

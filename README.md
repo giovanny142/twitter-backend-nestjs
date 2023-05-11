@@ -1,5 +1,5 @@
 # Gvzz - A Twitter Clone
-Backend API for Gvzz using Nest framework (NodeJS + TypeSCript + PostgreeSQL)
+Backend API by Gvzz using Nest framework (NodeJS + TypeSCript + PostgreeSQL)
 
 ![NodeJS Workflow](https://github.com/scaleracademy/twitter-backend-node/actions/workflows/nodejs.yml/badge.svg)
 
@@ -43,17 +43,7 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
+ 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is under the GNU AGPL v3.0 license
