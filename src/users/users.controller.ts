@@ -1,6 +1,22 @@
-import { Controller, Get, Param, Patch, Put, Delete, Post, NotFoundException } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Param, Patch, Put, Delete, Post, NotFoundException, Body } from '@nestjs/common';
+import { ApiTags, ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { UsersService } from './users.service';
+import { UserEntity } from './users.entity';
+
+export class UserCreateRequestBody {
+    @ApiProperty() username: string;
+    @ApiProperty() password: string;
+    @ApiPropertyOptional() name?: string;
+    @ApiPropertyOptional() avatar?: string;
+    @ApiPropertyOptional() bio?: string;
+}
+
+export class UserUpdateRequestBody {
+    @ApiPropertyOptional() password?: string;
+    @ApiPropertyOptional() name?: string;
+    @ApiPropertyOptional() avatar?: string;
+    @ApiPropertyOptional() bio?: string;
+}
 
 @ApiTags('users')
 @Controller('users')
@@ -19,18 +35,30 @@ export class UsersController {
     }
 
     @Get('/:userid')
-    getUserByUserId(@Param('userid') userid: string): string {
-        return `details of user id = ${userid}`;
+    async getUserByUserId(@Param('userId') userId: string): Promise<UserEntity> {
+        const user = await this.userService.getUserByUsername(userId);
+
+        if (!user) {
+            throw new NotFoundException('User not found')
+        }
+
+        return user;
     }
 
     @Post('/')
-    createNewUser(): string {
-        return 'new user created';
-    }
+    async createNewUser(@Body() createUserRequest: UserCreateRequestBody): Promise<UserEntity> {
+        const user = await this.userService.createUser(createUserRequest);
 
+        return user;
+    }
+ 
     @Patch('/:userid')
-    updateUserDetails(@Param('userid') userid): string {
-        return `details of user (id = ${userid}) updated`;
+    async updateUserDetails(
+        @Param('userid') userid: string,
+        @Body() updateUserRequest: UserUpdateRequestBody
+    ): Promise<UserEntity> {
+        const user = await this.userService.updateUser(userid, updateUserRequest);
+        return user;
     }
 
     @Put(':userid/follow')

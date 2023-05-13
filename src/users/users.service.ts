@@ -10,7 +10,29 @@ export class UsersService {
         @InjectRepository(UserEntity)
         private userRepository: UsersRepository) { }
 
-    async getUserByUsername(username: string): Promise<UserEntity> {
+    public async getUserByUsername(username: string): Promise<UserEntity> {
         return await this.userRepository.findOne({ where: { username } });
+    }
+
+    public async getUserByUserId(userId: string): Promise<UserEntity> {
+        return await this.userRepository.findOne({ where: { id: userId } });
+    }
+
+    public async createUser(user: Partial<UserEntity>): Promise<UserEntity> {
+        return await this.userRepository.save(user);
+    }
+
+    public async updateUser(userId: string, newUserDetails: Partial<UserEntity>): Promise<UserEntity> {
+        const existUser = await this.userRepository.findOne({ where: { id: userId } })
+
+        if (!existUser) {
+            return null;
+        }
+        
+        if (newUserDetails.bio) existUser.bio = newUserDetails.bio;
+        if (newUserDetails.avatar) existUser.avatar = newUserDetails.avatar;
+        if (newUserDetails.name) existUser.name = newUserDetails.name;
+
+        return await this.userRepository.save(existUser);
     }
 }
