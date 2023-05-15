@@ -1,5 +1,6 @@
+import { PasswordEntity } from "src/auth/passwords.entity";
 import { GvzBaseEntity } from "../commons/base.entity";
-import { Column, Entity } from "typeorm";
+import { Column, Entity, OneToOne } from "typeorm";
 
 @Entity('users')
 export class UserEntity extends GvzBaseEntity {
@@ -24,4 +25,7 @@ export class UserEntity extends GvzBaseEntity {
 
     @Column('boolean', { default: false })
     verified: boolean
+
+    @OneToOne((type) => PasswordEntity, (password) => password.user, { lazy: true, cascade: true})
+    userPassword: PasswordEntity;
 }
